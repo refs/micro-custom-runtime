@@ -32,6 +32,9 @@ func newRuntime() cli.Command {
 		Name: "runtime",
 		Action: func(ctx *cli.Context) {
 			for _, serv := range services {
+				// TODO(refs) there should be a better way to do this rather than this.
+				// this is calling itself with the services on "service" as part of the subcommands
+				// it therefore depends on the binary having the right set of subcommands
 				args := []gorun.CreateOption{
 					gorun.WithCommand(os.Args[0], serv),
 					gorun.WithEnv(env),
