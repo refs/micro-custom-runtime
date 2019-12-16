@@ -42,6 +42,7 @@ func newRuntime() cli.Command {
 				}
 
 				muService := &gorun.Service{Name: serv}
+				// this uses micro runtime to fork in a new proccess
 				if err := (*muRuntime).Create(muService, args...); err != nil {
 					log.Errorf("Failed to create runtime enviroment: %v", err)
 					os.Exit(1)
